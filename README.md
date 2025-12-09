@@ -51,7 +51,7 @@ Chat with any device on your local network, share files instantly, create groups
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/<your-username>/lan-chat.git
+git clone https://github.com/mohammed-zaishan/lanchat.git
 cd lan-chat
 ```
 
@@ -64,7 +64,7 @@ npm install
 ### 3. Start the server
 
 ```bash
-node server.js
+npm run start
 ```
 
 Visit: 
@@ -116,11 +116,8 @@ README.md
 
 ## Development Tips
 
-Use nodemon for auto-reload:
-
 ```bash
-npm install -g nodemon
-nodemon server.js
+npm run start:dev
 ```
 
 ## Roadmap
