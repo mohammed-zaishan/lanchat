@@ -52,7 +52,7 @@ Chat with any device on your local network, share files instantly, create groups
 
 ```bash
 git clone https://github.com/mohammed-zaishan/lanchat.git
-cd lan-chat
+cd lanchat
 ```
 
 ### 2. Install dependencies
