@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>LAN Chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="chat-shell md-elevation-3">
+      <header class="chat-header md-surface">
+        <div class="chat-header-left">
+          <div class="chat-logo md-primary">
+            <span class="material-icons">forum</span>
+          </div>
+          <div class="chat-title">
+            <h1>LAN Chat</h1>
+            <span>Devices on your network, in one place</span>
+          </div>
+        </div>
+        <div class="chat-header-right">
+          <div class="status-dot"></div>
+          <span class="status-text">Online</span>
+
+          <button
+            type="button"
+            class="avatar-button"
+            id="currentUserAvatar"
+            title=""
+            aria-label="Current device"
+          >
+            <span id="avatarInitials"></span>
+          </button>
+
+          <button
+            type="button"
+            class="icon-button"
+            id="themeToggle"
+            title="Toggle dark / light"
+            aria-label="Toggle theme"
+          >
+            <span class="material-icons" id="themeIcon">light_mode</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="chat-layout">
+        <aside class="sidebar">
+          <div class="sidebar-section">
+            <div
+              class="sidebar-item sidebar-item--active"
+              data-chat-type="public"
+              id="publicChatItem"
+            >
+              <span class="material-icons sidebar-item-icon">forum</span>
+              <div class="sidebar-item-text">
+                <div class="sidebar-item-title">General</div>
+                <div class="sidebar-item-subtitle">Everyone on this server</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-section">
+            <div class="sidebar-section-header">
+              <span>Devices</span>
+              <span class="sidebar-count" id="onlineCount">0</span>
+            </div>
+            <div class="sidebar-list" id="userList"></div>
+          </div>
+
+          <div class="sidebar-section sidebar-section-groups">
+            <div class="sidebar-section-header">
+              <span>Groups</span>
+              <button
+                type="button"
+                class="icon-button icon-button--small"
+                id="newGroupButton"
+                title="Create group"
+              >
+                <span class="material-icons">add</span>
+              </button>
+            </div>
+            <div class="sidebar-list" id="groupList"></div>
+          </div>
+        </aside>
+
+        <main id="chat-container">
+          <div id="messages">
+            <div class="messages-empty" id="emptyState">
+              <span class="messages-empty-icon material-icons">
+                chat_bubble_outline
+              </span>
+              <div>
+                No messages yet.<br />
+                Pick a device or group to start chatting.
+              </div>
+            </div>
+          </div>
+
+          <div class="composer-shell md-surface-elevated">
+            <form id="form" autocomplete="off">
+              <div class="composer-input-wrap md-field">
+                <button
+                  type="button"
+                  class="icon-button"
+                  id="attachButton"
+                  title="Attach a file"
+                  aria-label="Attach a file"
+                >
+                  <span class="material-icons">attach_file</span>
+                </button>
+                <textarea
+                  id="input"
+                  rows="1"
+                  placeholder="Type a message…"
+                ></textarea>
+                <input type="file" id="fileInput" style="display: none" />
+              </div>
+
+              <button
+                type="submit"
+                class="send-button md-primary-button"
+                id="sendButton"
+              >
+                <span class="material-icons">send</span>
+                <span class="send-label">Send</span>
+              </button>
+            </form>
+
+            <div class="helper-text">
+              <span>
+                <kbd>Enter</kbd> to send &nbsp;•&nbsp; <kbd>Shift</kbd> +
+                <kbd>Enter</kbd> for a new line
+              </span>
+              <span id="selectedFileInfo"></span>
+            </div>
+
+            <div class="upload-progress" id="uploadProgress" hidden>
+              <div class="upload-progress-header">
+                <span id="uploadProgressLabel">Uploading…</span>
+                <span id="uploadProgressText">0%</span>
+              </div>
+              <div class="upload-progress-bar">
+                <div class="upload-progress-fill" id="uploadProgressFill"></div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
